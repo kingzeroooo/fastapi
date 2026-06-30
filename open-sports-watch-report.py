@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import http.server
+import os
 import socket
 import socketserver
 import sys
@@ -25,6 +26,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         return
 
 
+def is_remote_workspace() -> bool:
+    markers = (
+        "CURSOR_AGENT",
+        "REMOTE_CONTAINERS",
+        "CODESPACES",
+        "GITPOD_WORKSPACE_ID",
+    )
+    return any(os.environ.get(name) for name in markers) or Path("/.dockerenv").exists()
+
+
 def find_free_port(start: int = DEFAULT_PORT, attempts: int = 10) -> int:
     for port in range(start, start + attempts):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
@@ -34,7 +45,29 @@ def find_free_port(start: int = DEFAULT_PORT, attempts: int = 10) -> int:
     raise RuntimeError(f"No free port found near {start}")
 
 
+def print_remote_instructions(port: int, report: str) -> None:
+    url = f"http://127.0.0.1:{port}/{report}"
+    print()
+    print("=" * 72)
+    print("REMOTE WORKSPACE DETECTED")
+    print("=" * 72)
+    print("The server is running inside Cursor's remote environment.")
+    print("Your local browser cannot reach remote 127.0.0.1 directly.")
+    print()
+    print("Fastest options:")
+    print("  A) Cursor Ports panel -> find port", port, "-> click 'Open in Browser'")
+    print("  B) Keep server running, then open this forwarded URL locally:")
+    print(f"     {url}")
+    print("  C) No server needed: open sports-watch-report.code-workspace in Cursor,")
+    print("     then click sports-watch-comparison-report.html (Simple Browser preview)")
+    print("  D) Download/open the HTML file on your computer and open it locally")
+    print("=" * 72)
+    print()
+
+
 def open_browser(url: str) -> None:
+    if is_remote_workspace():
+        return
     try:
         opened = webbrowser.open(url)
     except Exception as exc:  # noqa: BLE001 - show any browser launcher failure
@@ -60,6 +93,11 @@ def main() -> None:
         action="store_true",
         help="Only start the local server; do not try to open a browser window.",
     )
+    parser.add_argument(
+        "--bind",
+        default="0.0.0.0",
+        help="Bind address (default: 0.0.0.0 for remote port forwarding)",
+    )
     args = parser.parse_args()
 
     report_path = ROOT / REPORT
@@ -72,19 +110,24 @@ def main() -> None:
 
     port = args.port
     try:
-        httpd = socketserver.TCPServer(("127.0.0.1", port), Handler)
+        httpd = socketserver.TCPServer((args.bind, port), Handler)
     except OSError:
         port = find_free_port(args.port + 1)
-        httpd = socketserver.TCPServer(("127.0.0.1", port), Handler)
+        httpd = socketserver.TCPServer((args.bind, port), Handler)
         print(f"Port {args.port} is busy, using {port} instead.")
 
-    url = f"http://127.0.0.1:{port}/{REPORT}"
+    local_url = f"http://127.0.0.1:{port}/{REPORT}"
     print("Starting local report server...")
-    print(f"Open in browser: {url}")
+    print(f"Listening on {args.bind}:{port}")
+    print(f"Report path: {report_path}")
+    print(f"Local URL: {local_url}")
+    print("Keep this terminal open while viewing the report.")
     print("Stop server with Ctrl+C.")
 
-    if not args.no_browser:
-        threading.Timer(0.3, lambda: open_browser(url)).start()
+    if is_remote_workspace():
+        print_remote_instructions(port, REPORT)
+    elif not args.no_browser:
+        threading.Timer(0.3, lambda: open_browser(local_url)).start()
 
     try:
         httpd.serve_forever()
