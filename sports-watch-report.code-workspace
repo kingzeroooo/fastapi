@@ -1,0 +1,30 @@
+{
+  "folders": [
+    {
+      "name": "Sports Watch Report",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "workbench.editorAssociations": {
+      "**/sports-watch-comparison-report.html": "simpleBrowser.view"
+    }
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Open Sports Watch Report in Browser",
+        "type": "shell",
+        "command": "python3",
+        "args": ["${workspaceFolder}/open-sports-watch-report.py"],
+        "isBackground": true,
+        "problemMatcher": [],
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated"
+        }
+      }
+    ]
+  }
+}

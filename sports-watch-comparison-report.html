@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>攀岩与越野跑运动手表选购报告（预算 ≤ ¥3,000）</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a222d;
+      --surface2: #232d3b;
+      --text: #e8edf2;
+      --muted: #8b9aab;
+      --accent: #3d8b6e;
+      --accent2: #4a9fd4;
+      --coros: #f5a623;
+      --garmin: #007cc3;
+      --suunto: #e85d4c;
+      --warn: #e8b84a;
+      --border: #2e3a4a;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+    a { color: var(--accent2); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
+    header.hero {
+      background: linear-gradient(135deg, #1a2e28 0%, #1a222d 50%, #1e2838 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 20px 40px;
+      text-align: center;
+    }
+    header.hero h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 12px; }
+    header.hero .subtitle { color: var(--muted); font-size: 1.05rem; max-width: 720px; margin: 0 auto 20px; }
+    .badge {
+      display: inline-block;
+      background: rgba(61, 139, 110, 0.2);
+      border: 1px solid var(--accent);
+      color: #7dcea0;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin: 4px;
+    }
+    .badge.warn { background: rgba(232, 184, 74, 0.15); border-color: var(--warn); color: var(--warn); }
+    .open-hint {
+      margin-top: 16px;
+      padding: 10px 14px;
+      background: rgba(74, 159, 212, 0.12);
+      border: 1px solid var(--accent2);
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: #b8d4e8;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+    .open-hint code, .open-hint kbd {
+      background: var(--surface2);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    .open-hint button {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 1.1rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .open-hint.hidden { display: none; }
+    section { margin-top: 40px; }
+    h2 {
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+    h3 { font-size: 1.1rem; margin: 20px 0 10px; color: #c5d4e0; }
+    p { margin-bottom: 12px; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .card h4 { font-size: 1rem; margin-bottom: 8px; }
+    .card .brand { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .card.coros .brand { color: var(--coros); }
+    .card.garmin .brand { color: var(--garmin); }
+    .card.suunto .brand { color: var(--suunto); }
+    .card .price { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+    .card .tag { display: inline-block; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: var(--surface2); margin: 2px 2px 2px 0; }
+    .filters {
+      display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0;
+    }
+    .filters button, .sort-btns button {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .filters button:hover, .sort-btns button:hover { border-color: var(--accent); }
+    .filters button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .table-wrap { overflow-x: auto; margin: 16px 0; border-radius: var(--radius); border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--surface2); font-weight: 600; white-space: nowrap; cursor: pointer; user-select: none; }
+    th:hover { color: var(--accent2); }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    tr.hidden { display: none; }
+    .highlight { color: var(--accent); font-weight: 600; }
+    .warn-text { color: var(--warn); }
+    .price-bar-chart { margin: 20px 0; }
+    .price-bar-row { display: flex; align-items: center; margin-bottom: 10px; gap: 10px; }
+    .price-bar-label { width: 140px; font-size: 0.82rem; flex-shrink: 0; }
+    .price-bar-track { flex: 1; height: 22px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+    .price-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 0.75rem; font-weight: 600; min-width: 40px; }
+    .dim-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+    .verdict-table th:first-child, .verdict-table td:first-child { font-weight: 600; }
+    .rec-box {
+      background: linear-gradient(135deg, rgba(61,139,110,0.15), rgba(74,159,212,0.1));
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .rec-box strong { color: #7dcea0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin-bottom: 6px; }
+    .review-item { border-left: 3px solid var(--accent2); padding-left: 12px; margin-bottom: 14px; }
+    .review-item .source { font-size: 0.8rem; color: var(--muted); }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .mobile-cards { display: none; }
+    @media (max-width: 768px) {
+      .desktop-table { display: none; }
+      .mobile-cards { display: block; }
+      .watch-card-mobile {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+      .watch-card-mobile.hidden { display: none; }
+      .watch-card-mobile h4 { margin-bottom: 8px; }
+      .watch-card-mobile dl { display: grid; grid-template-columns: 100px 1fr; gap: 4px 8px; font-size: 0.85rem; }
+      .watch-card-mobile dt { color: var(--muted); }
+    }
+    @media print {
+      body { background: #fff; color: #000; }
+      .filters, .sort-btns { display: none !important; }
+      header.hero { background: #f5f5f5; }
+      .card, .dim-section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>攀岩与越野跑运动手表选购报告</h1>
+  <p class="subtitle">全维度对比高驰、佳明、颂拓等 8 款到手价低于 ¥3,000 的运动手表，为攀岩与越野跑爱好者提供选购参考。</p>
+  <span class="badge">筛选条件：到手价 &lt; ¥3,000</span>
+  <span class="badge">数据截止：2026-06-30</span>
+  <span class="badge warn">价格含国补/大促参考，实际以电商平台为准</span>
+  <p class="open-hint" id="open-hint">
+    在 Cursor 中直接点击 HTML 默认会打开代码编辑器。请任选一种方式预览：
+    （1）用 Cursor 打开 <code>sports-watch-report.code-workspace</code> 后再点击本文件；
+    （2）终端运行 <code>python3 open-sports-watch-report.py</code>；
+    （3）<kbd>Ctrl+Shift+P</kbd> →「Tasks: Run Task」→ <strong>Open Sports Watch Report in Browser</strong>（需先打开上述 workspace 文件）。
+    <button type="button" id="dismiss-hint" aria-label="关闭提示">×</button>
+  </p>
+</header>
+
+<div class="container">
+
+  <!-- 执行摘要 -->
+  <section id="summary">
+    <h2>执行摘要</h2>
+    <p>本报告面向<strong>攀岩 + 越野跑双栖</strong>运动爱好者，仅纳入中国市场常见<strong>促销+国补后到手价低于 ¥3,000</strong>的型号。双频 GPS 普及后，各品牌定位精度差距已缩小；预算内选购更应关注<strong>离线地图、攀岩模式、重量与续航</strong>。</p>
+
+    <div class="rec-box">
+      <p><strong>综合推荐：</strong>均衡双栖场景首选 <strong>高驰 Apex 4</strong>（约 ¥2,500 到手）——钛圈蓝宝石、离线地图、攀岩模式、65h GPS、51g 织物表带。预算紧张选 <strong>Pace 4</strong>（轻量训练）或 <strong>Forerunner 265</strong>（佳明训练 AI）；能蹲到 <strong>¥2,400 左右 Fenix 7</strong> 则功能最全，但表体较重且户外攀岩自动计趟口碑参差。</p>
+    </div>
+
+    <h3>分价位推荐矩阵</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>¥1,300 – ¥1,700</h4>
+        <p><span class="tag">轻量训练</span> <strong>Pace 4</strong>：32g、41h GPS，无地图</p>
+        <p><span class="tag">训练 AI</span> <strong>FR265</strong>：佳明准备度/每日建议，无地图</p>
+      </div>
+      <div class="card">
+        <h4>¥2,000 – ¥2,500</h4>
+        <p><span class="tag">探险地图</span> <strong>Nomad</strong>：语音标记、钓鱼/徒步模式</p>
+        <p><span class="tag">跑表+地图</span> <strong>Pace Pro</strong>：AMOLED + 离线地图</p>
+        <p><span class="tag">促销捡漏</span> <strong>Fenix 7</strong>：需蹲大促，功能全但重</p>
+      </div>
+      <div class="card">
+        <h4>¥2,500 – ¥3,000</h4>
+        <p><span class="tag">双栖首选</span> <strong>Apex 4</strong>：攀岩+越野全能</p>
+        <p><span class="tag">军规耐用</span> <strong>Instinct 3</strong>：10 ATM、太阳能可选</p>
+        <p><span class="tag">地图 AMOLED</span> <strong>Suunto Vertical</strong>：免费离线地图</p>
+      </div>
+    </div>
+
+    <h3>一句话定位</h3>
+    <div class="card-grid" id="oneliner-cards">
+      <div class="card coros" data-tags="trail climb light">
+        <div class="brand">COROS</div>
+        <h4>Pace 4</h4>
+        <p>超轻 AMOLED 跑表，训练利器；<strong>不适合</strong>复杂越野导航（无地图）。</p>
+        <div class="price">¥1,300–1,700</div>
+      </div>
+      <div class="card coros" data-tags="trail climb">
+        <div class="brand">COROS</div>
+        <h4>Apex 4</h4>
+        <p>预算内山地运动标杆；攀岩模式+地图+快挂扣，<strong>双栖首选</strong>。</p>
+        <div class="price">¥2,500–2,970</div>
+      </div>
+      <div class="card garmin" data-tags="trail climb">
+        <div class="brand">Garmin</div>
+        <h4>Fenix 7 <span class="warn-text">（促销）</span></h4>
+        <p>佳明户外生态最全；<strong>仅促销符合预算</strong>，重且户外攀易误判。</p>
+        <div class="price">¥2,379–2,873</div>
+      </div>
+      <div class="card coros" data-tags="trail climb light">
+        <div class="brand">COROS</div>
+        <h4>Pace Pro</h4>
+        <p>带地图的 AMOLED 轻跑表；填补 Pace 4 与 Apex 4 之间空白。</p>
+        <div class="price">¥2,000–2,500</div>
+      </div>
+      <div class="card coros" data-tags="trail climb">
+        <div class="brand">COROS</div>
+        <h4>Nomad</h4>
+        <p>探险/徒步向，地图+语音标记；攀岩有但材质不如 Apex。</p>
+        <div class="price">¥1,950–2,500</div>
+      </div>
+      <div class="card garmin" data-tags="trail light">
+        <div class="brand">Garmin</div>
+        <h4>Forerunner 265</h4>
+        <p>佳明训练 AI 入门；越野可跑但<strong>无离线地图</strong>。</p>
+        <div class="price">¥1,530–1,810</div>
+      </div>
+      <div class="card garmin" data-tags="trail climb">
+        <div class="brand">Garmin</div>
+        <h4>Instinct 3</h4>
+        <p>军规 10 ATM 硬核户外；贴近预算上限，地图能力弱于 Apex。</p>
+        <div class="price">约 ¥2,880</div>
+      </div>
+      <div class="card suunto" data-tags="trail climb">
+        <div class="brand">Suunto</div>
+        <h4>Vertical</h4>
+        <p>颂拓 AMOLED+免费地图；促销性价比好，攀岩非专精。</p>
+        <div class="price">¥2,300–2,400</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 筛选与排序 -->
+  <section id="matrix">
+    <h2>全维度规格对比</h2>
+    <div class="filters">
+      <span style="color:var(--muted);line-height:36px;margin-right:4px;">场景筛选：</span>
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="climb">攀岩优先</button>
+      <button class="filter-btn" data-filter="trail">越野跑优先</button>
+      <button class="filter-btn" data-filter="light">轻量优先</button>
+    </div>
+    <div class="sort-btns" style="margin-bottom:12px;">
+      <span style="color:var(--muted);margin-right:8px;">排序：</span>
+      <button data-sort="price">到手价</button>
+      <button data-sort="weight">重量</button>
+      <button data-sort="gps">GPS 续航</button>
+    </div>
+
+    <div class="table-wrap desktop-table">
+      <table id="spec-table">
+        <thead>
+          <tr>
+            <th data-col="name">型号</th>
+            <th data-col="price">到手价 (¥)</th>
+            <th data-col="msrp">官方价 (¥)</th>
+            <th data-col="weight">重量</th>
+            <th data-col="size">尺寸</th>
+            <th data-col="screen">屏幕</th>
+            <th data-col="material">材质/防水</th>
+            <th data-col="gnss">GNSS</th>
+            <th data-col="maps">离线地图</th>
+            <th data-col="climb">攀岩</th>
+            <th data-col="trail">越野跑</th>
+            <th data-col="battery">GPS 续航</th>
+            <th data-col="daily">日常续航</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-tags="trail light" data-price="1500" data-weight="32" data-gps="41">
+            <td><strong>Pace 4</strong><br><small>COROS</small></td>
+            <td>1,300–1,700</td>
+            <td>1,699</td>
+            <td>32g 织物 / 40g 硅胶</td>
+            <td>43.4×11.8mm</td>
+            <td>1.2" AMOLED 1500nit</td>
+            <td>聚合物 / 5 ATM</td>
+            <td>双频全星座</td>
+            <td>无（路线导航）</td>
+            <td>基础记录</td>
+            <td>轻量、41h GPS、无地图</td>
+            <td>41h 高精度</td>
+            <td>19 天</td>
+          </tr>
+          <tr data-tags="trail climb" data-price="2550" data-weight="44" data-gps="65">
+            <td><strong>Apex 4</strong><br><small>COROS 42/46mm</small></td>
+            <td>2,500–2,970</td>
+            <td>2,849–2,999</td>
+            <td>44–51g 织物 / 56–64g 硅胶</td>
+            <td>42.6 或 46.2mm</td>
+            <td>1.2–1.3" MIP 触屏</td>
+            <td>钛圈+蓝宝石 / 5 ATM</td>
+            <td>双频+垂直 GPS 算法</td>
+            <td class="highlight">有（街道/步道/POI）</td>
+            <td class="highlight">室内攀/抱石/多段/快挂扣</td>
+            <td class="highlight">爬升、地图、65h</td>
+            <td>41–65h</td>
+            <td>15–24 天</td>
+          </tr>
+          <tr data-tags="trail climb" data-price="2600" data-weight="63" data-gps="57">
+            <td><strong>Fenix 7</strong><br><small>Garmin 7S/7/7X</small></td>
+            <td class="warn-text">2,379–2,873 促销</td>
+            <td>4,980–6,480</td>
+            <td>63–96g</td>
+            <td>42/47/51mm</td>
+            <td>1.2–1.4" MIP 触屏</td>
+            <td>钢圈/蓝宝石可选 / 10 ATM</td>
+            <td>多频多星 (Pro 版)</td>
+            <td class="highlight">TopoActive 全地图</td>
+            <td>室内好；户外攀易误判</td>
+            <td>ClimbPro、PacePro</td>
+            <td>40–57h（视版本）</td>
+            <td>11–28 天</td>
+          </tr>
+          <tr data-tags="trail climb light" data-price="2250" data-weight="37" data-gps="38">
+            <td><strong>Pace Pro</strong><br><small>COROS</small></td>
+            <td>2,000–2,500</td>
+            <td>约 2,479</td>
+            <td>37g 织物 / 49g 硅胶</td>
+            <td>46×12.25mm</td>
+            <td>1.3" AMOLED 1500nit</td>
+            <td>矿物玻璃 / 5 ATM</td>
+            <td>双频全星座</td>
+            <td>有（全球离线）</td>
+            <td>基础</td>
+            <td>38h GPS、地图导航</td>
+            <td>31–38h</td>
+            <td>20 天</td>
+          </tr>
+          <tr data-tags="trail climb" data-price="2200" data-weight="49" data-gps="50">
+            <td><strong>Nomad</strong><br><small>COROS</small></td>
+            <td>1,950–2,500</td>
+            <td>2,499</td>
+            <td>49g 织物 / 61g 硅胶</td>
+            <td>47.8×16.4mm</td>
+            <td>1.3" MIP 触屏</td>
+            <td>铝骨架+聚合物 / 5 ATM</td>
+            <td>双频全星座</td>
+            <td>有（街道/POI）</td>
+            <td>有（徒步/攀岩模式）</td>
+            <td>50h GPS、探索笔记</td>
+            <td>34–50h</td>
+            <td>22 天</td>
+          </tr>
+          <tr data-tags="trail light" data-price="1650" data-weight="47" data-gps="20">
+            <td><strong>FR 265</strong><br><small>Garmin</small></td>
+            <td>1,530–1,810</td>
+            <td>1,999</td>
+            <td>39–47g</td>
+            <td>42/46mm</td>
+            <td>1.1–1.3" AMOLED</td>
+            <td>聚合物 / 5 ATM</td>
+            <td>多频多星</td>
+            <td>无</td>
+            <td>无专精</td>
+            <td>训练准备度、无地图</td>
+            <td>约 20h</td>
+            <td>12 天</td>
+          </tr>
+          <tr data-tags="trail climb" data-price="2880" data-weight="58" data-gps="40">
+            <td><strong>Instinct 3</strong><br><small>Garmin</small></td>
+            <td>约 2,880</td>
+            <td>2,980 起</td>
+            <td>约 58g</td>
+            <td>45/50mm</td>
+            <td>MIP 或 AMOLED</td>
+            <td>纤维聚合物 / 10 ATM</td>
+            <td>双频多星</td>
+            <td>部分版本有</td>
+            <td>基础</td>
+            <td>军规耐用、太阳能可选</td>
+            <td>视版本 40h+</td>
+            <td>视版本</td>
+          </tr>
+          <tr data-tags="trail climb" data-price="2350" data-weight="74" data-gps="60">
+            <td><strong>Vertical</strong><br><small>Suunto</small></td>
+            <td>2,300–2,400</td>
+            <td>约 3,500+</td>
+            <td>约 74g</td>
+            <td>49mm</td>
+            <td>1.43" AMOLED</td>
+            <td>钛/钢可选 / 10 ATM</td>
+            <td>双频多星</td>
+            <td class="highlight">免费离线地图</td>
+            <td>基础</td>
+            <td>85h GPS（官方）</td>
+            <td>约 60–85h</td>
+            <td>21 天</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mobile-cards" id="mobile-cards"></div>
+  </section>
+
+  <!-- 攀岩功能对比 -->
+  <section id="climbing">
+    <h2>攀岩功能对比</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>能力</th>
+            <th>Pace 4</th>
+            <th>Pace Pro</th>
+            <th>Nomad</th>
+            <th>Apex 4</th>
+            <th>Fenix 7</th>
+            <th>Instinct 3</th>
+            <th>FR 265</th>
+            <th>Vertical</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>室内攀/抱石自动计趟</td><td>基础</td><td>基础</td><td>有</td><td class="highlight">强</td><td>室内好</td><td>基础</td><td>—</td><td>基础</td></tr>
+          <tr><td>户外运动攀</td><td>弱</td><td>弱</td><td>有</td><td class="highlight">较强</td><td class="warn-text">易误判</td><td>弱</td><td>—</td><td>弱</td></tr>
+          <tr><td>多段/登山模式</td><td>无</td><td>无</td><td>有</td><td class="highlight">有</td><td>ClimbPro 偏徒步</td><td>无</td><td>—</td><td>无</td></tr>
+          <tr><td>离线地图</td><td>无</td><td>有</td><td>有</td><td class="highlight">有</td><td>有</td><td>部分</td><td>无</td><td>有</td></tr>
+          <tr><td>岩场快挂扣</td><td>无</td><td>无</td><td>无</td><td class="highlight">有</td><td>无</td><td>无</td><td>—</td><td>无</td></tr>
+          <tr><td>难度体系</td><td>—</td><td>—</td><td>基础</td><td>YDS/法式/V 级</td><td>V 级/Font</td><td>—</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="warn-text">注意：Garmin Fenix 7 户外运动攀模式下，大风天气气压计易受干扰，用户反馈自动计趟可能严重偏差（Garmin 官方论坛）。高驰 Apex 4 室内攀可同一会话切换抱石/先锋，体验更连贯。</p>
+  </section>
+
+  <!-- 六大维度 -->
+  <section id="dimensions">
+    <h2>六大维度深度对比</h2>
+
+    <div class="dim-section" id="dim-price">
+      <h3>1. 价格</h3>
+      <p>以下条形图以<strong>常见到手价中位数</strong>为参考（占预算 ¥3,000 的比例）：</p>
+      <div class="price-bar-chart" id="price-bars"></div>
+      <ul>
+        <li><strong>Fenix 7 特别提醒：</strong>官方价 ¥4,980–6,480，仅大促/国补时降至 ¥2,379–2,873 才符合本报告预算。清库存款需确认版本（标准/太阳能/蓝宝石）与保修渠道。</li>
+        <li><strong>5 年持有成本：</strong>高驰、颂拓离线地图免费；佳明部分高级地图/功能有 Connect+ 订阅趋势，选购时留意。</li>
+        <li><strong>性价比梯队：</strong>Pace 4 &gt; FR265（促销）&gt; Nomad / Pace Pro &gt; Apex 4 &gt; 促销 Fenix 7</li>
+      </ul>
+    </div>
+
+    <div class="dim-section" id="dim-weight">
+      <h3>2. 重量与佩戴</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>型号</th><th>重量</th><th>攀岩磕碰</th><th>长跑摆臂</th></tr></thead>
+          <tbody>
+            <tr><td>Pace 4</td><td class="highlight">32g</td><td>几乎无感，但无快挂扣</td><td>极佳</td></tr>
+            <tr><td>Pace Pro</td><td>37g</td><td>轻，保护性一般</td><td>极佳</td></tr>
+            <tr><td>Apex 4</td><td>44–51g</td><td class="highlight">钛圈+快挂扣，均衡</td><td>优秀</td></tr>
+            <tr><td>Nomad</td><td>49–61g</td><td>中等，探险向</td><td>良好</td></tr>
+            <tr><td>FR 265</td><td>39–47g</td><td>无专精保护</td><td>优秀</td></tr>
+            <tr><td>Instinct 3</td><td>~58g</td><td>军规壳体耐磕</td><td>中等</td></tr>
+            <tr><td>Vertical</td><td>~74g</td><td>偏重</td><td>中等</td></tr>
+            <tr><td>Fenix 7</td><td>63–96g</td><td>表体大易刮蹭</td><td>长跑偏沉</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="dim-section" id="dim-features">
+      <h3>3. 功能（越野跑专节）</h3>
+      <ul>
+        <li><strong>Apex 4：</strong>双频 GPS 树林表现显著优于 Apex 2 代；离线地图零延迟加载；垂直 GPS 算法适合高海拔越野。</li>
+        <li><strong>Fenix 7：</strong>ClimbPro 拆分路线爬升、PacePro 配速策略，佳明越野训练生态最成熟。</li>
+        <li><strong>Pace 4 / FR265：</strong>无离线地图，复杂越野赛需提前记路或配合手机；适合路跑及熟悉赛道。</li>
+        <li><strong>Nomad / Vertical：</strong>地图+长续航，适合多日徒步穿插越野训练。</li>
+      </ul>
+    </div>
+
+    <div class="dim-section" id="dim-accuracy">
+      <h3>4. 准确性</h3>
+      <ul>
+        <li><strong>GPS：</strong>2025 年后双频机型差距缩小。知乎实测 Pace 4 与 FR265 操场/道路误差均在 1–27m 级；OutdoorGearLab 测 Apex 4 在树林赛道误差 ±0.02 mile，接近最准梯队。</li>
+        <li><strong>心率：</strong>Apex 4 稳态与胸带差 0.1–0.5 BPM（OutdoorGearLab）；Pace 4 与 FR265 慢跑误差 0–2 BPM。高强度间歇仍建议胸带/臂带。</li>
+        <li><strong>海拔：</strong>Apex 4 双量程气压计；户外攀岩大风天气压计易受干扰（Fenix 7 论坛案例）。</li>
+      </ul>
+    </div>
+
+    <div class="dim-section" id="dim-battery">
+      <h3>5. 续航性（分场景）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>场景</th><th>推荐型号</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>日常佩戴（含睡眠）</td><td>Apex 4 / Nomad / Vertical</td><td>15–24 天，MIP 屏更省电</td></tr>
+            <tr><td>3h 越野训练</td><td>全系均可</td><td>双频开满无压力</td></tr>
+            <tr><td>50km 越野赛</td><td>Apex 4 / Fenix 7 / Vertical</td><td>Pace 4 够用；FR265 约 20h 需省电</td></tr>
+            <tr><td>周末双攀+30km 跑</td><td>Apex 4</td><td>65h GPS 持久模式余量大</td></tr>
+            <tr><td>冬季低温</td><td>Instinct 3 / Apex 4 MIP</td><td>AMOLED 低温掉电更快</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>AMOLED（Pace 4、FR265、Vertical）亮屏耗电高于 MIP（Apex 4、Fenix 7、Nomad）。</p>
+    </div>
+
+    <div class="dim-section" id="dim-reviews">
+      <h3>6. 用户评价精选</h3>
+
+      <div class="review-item">
+        <strong>COROS Pace 4</strong>
+        <p>Wirecutter 2026「最佳整体跑表」；超轻 32g、41h GPS 与双频精度获好评。缺点：无离线地图、表盘选择少。</p>
+        <div class="source">来源：Wirecutter、DC Rainmaker、网易 2026 对比</div>
+      </div>
+      <div class="review-item">
+        <strong>COROS Apex 4</strong>
+        <p>Tom's Guide：「轻量 Fenix rival，续航出色」；OutdoorGearLab 8.1/10，GPS/心率精度惊喜。缺点：MIP 亮度不如 AMOLED、无 NFC 支付。</p>
+        <div class="source">来源：Tom's Guide、OutdoorGearLab、CleverHiker</div>
+      </div>
+      <div class="review-item">
+        <strong>Garmin Fenix 7</strong>
+        <p>Treeline Review：户外功能最全梯队；促销时性价比极高。缺点：重、户外攀岩模式不稳定、官方价已偏高。</p>
+        <div class="source">来源：Treeline Review、Garmin 论坛、中关村在线促销</div>
+      </div>
+      <div class="review-item">
+        <strong>COROS Pace Pro</strong>
+        <p>AMOLED+离线地图的轻量跑表，处理器快、地图渲染流畅。缺点：介于 Pace 4 与 Apex 4 之间定位略尴尬。</p>
+        <div class="source">来源：DC Rainmaker、COROS 官方</div>
+      </div>
+      <div class="review-item">
+        <strong>COROS Nomad</strong>
+        <p>探险向好评：语音标记、探索笔记、钓鱼模式独特。缺点：比 Apex 4 重、攀岩非专精、无钛圈。</p>
+        <div class="source">来源：DC Rainmaker、IT之家</div>
+      </div>
+      <div class="review-item">
+        <strong>Garmin Forerunner 265</strong>
+        <p>训练准备度/每日建议获进阶跑者认可；国补后约 ¥1,530 性价比高。缺点：无地图、GPS 续航约 20h 短于 Pace 4。</p>
+        <div class="source">来源：网易 2026 对比、慢慢买历史价</div>
+      </div>
+      <div class="review-item">
+        <strong>Garmin Instinct 3</strong>
+        <p>10 ATM+军规认证，太阳能版户外耐用。缺点：贴近预算上限、地图弱、智能功能少于 Fenix。</p>
+        <div class="source">来源：淘宝口碑、Garmin 官方</div>
+      </div>
+      <div class="review-item">
+        <strong>Suunto Vertical</strong>
+        <p>促销价 AMOLED+免费地图极具吸引力；越野续航长。缺点：偏重、攀岩功能基础、国内售后网点少于佳明/高驰。</p>
+        <div class="source">来源：Mobile Tech World 2026、慢慢买</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 场景选购结论 -->
+  <section id="verdict">
+    <h2>场景选购结论</h2>
+    <div class="table-wrap">
+      <table class="verdict-table">
+        <thead>
+          <tr><th>需求</th><th>首选</th><th>次选</th><th>预算内不推荐</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>一块表双栖（攀+越野）</td><td class="highlight">Apex 4</td><td>促销 Fenix 7</td><td>Pace 4 / FR265（无地图）</td></tr>
+          <tr><td>超轻训练跑为主</td><td>Pace 4</td><td>Pace Pro</td><td>Fenix 7（过重）</td></tr>
+          <tr><td>佳明生态+训练 AI</td><td>FR 265</td><td>促销 Fenix 7</td><td>Nomad</td></tr>
+          <tr><td>攀岩功能优先</td><td class="highlight">Apex 4</td><td>Nomad</td><td>FR265 / Pace 4</td></tr>
+          <tr><td>促销捡漏户外全能</td><td>促销 Fenix 7</td><td>Suunto Vertical</td><td>Instinct 3（地图弱）</td></tr>
+          <tr><td>探险/徒步兼越野</td><td>Nomad</td><td>Apex 4</td><td>Pace 4</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 超出预算 -->
+  <section id="over-budget">
+    <h2>超出预算型号速览</h2>
+    <p>若预算可突破 ¥3,000，可考虑：</p>
+    <ul>
+      <li><strong>高驰 Vertix 2S</strong>（约 ¥5,000+）：攀岩功能最深（多段、坠落检测、快挂扣），GPS 续航 118h 级。</li>
+      <li><strong>佳明 Fenix 8</strong>（¥7,980+）：太阳能、MIL-STD-810、LED 手电筒、潜水认证，极端环境保障。</li>
+      <li><strong>佳明 Forerunner 965</strong>（约 ¥4,000+）：铁三/超马地图旗舰，训练生态完整。</li>
+    </ul>
+    <p><small>另：Forerunner 255（约 ¥900–1,300）偏纯路跑无地图，攀岩/越野相关度低，未纳入主表。</small></p>
+  </section>
+
+  <footer>
+    <p><strong>数据来源：</strong>
+      <a href="https://cn.coros.com">高驰中国官网</a>、
+      <a href="https://www.garmin.com.cn">佳明中国官网</a>、
+      <a href="https://www.suunto.com">颂拓官网</a>、
+      DC Rainmaker、Tom's Guide、OutdoorGearLab、Wirecutter、IT之家、网易、慢慢买、中关村在线。
+    </p>
+    <p>本报告仅供参考，价格与功能以厂商最新信息及实际购买渠道为准。数据截止 2026-06-30。</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const hint = document.getElementById('open-hint');
+  const dismiss = document.getElementById('dismiss-hint');
+  if (hint && dismiss) {
+    dismiss.addEventListener('click', () => hint.classList.add('hidden'));
+    if (location.protocol !== 'file:' && !location.hostname.includes('localhost') && location.hostname !== '127.0.0.1') {
+      hint.classList.add('hidden');
+    }
+  }
+
+  const watches = [
+    { name: 'Pace 4', price: 1500, color: '#f5a623' },
+    { name: 'FR 265', price: 1650, color: '#007cc3' },
+    { name: 'Nomad', price: 2200, color: '#f5a623' },
+    { name: 'Pace Pro', price: 2250, color: '#f5a623' },
+    { name: 'Vertical', price: 2350, color: '#e85d4c' },
+    { name: 'Fenix 7', price: 2600, color: '#007cc3' },
+    { name: 'Apex 4', price: 2550, color: '#f5a623' },
+    { name: 'Instinct 3', price: 2880, color: '#007cc3' }
+  ];
+  const maxPrice = 3000;
+  const barContainer = document.getElementById('price-bars');
+  watches.sort((a, b) => a.price - b.price).forEach(w => {
+    const pct = (w.price / maxPrice) * 100;
+    const row = document.createElement('div');
+    row.className = 'price-bar-row';
+    row.innerHTML = `
+      <div class="price-bar-label">${w.name}</div>
+      <div class="price-bar-track">
+        <div class="price-bar-fill" style="width:${pct}%;background:${w.color}">¥${w.price}</div>
+      </div>`;
+    barContainer.appendChild(row);
+  });
+
+  const tbody = document.querySelector('#spec-table tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const mobileContainer = document.getElementById('mobile-cards');
+
+  function buildMobileCards() {
+    mobileContainer.innerHTML = '';
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const card = document.createElement('div');
+      card.className = 'watch-card-mobile';
+      card.dataset.tags = row.dataset.tags;
+      card.innerHTML = `
+        <h4>${cells[0].innerHTML}</h4>
+        <dl>
+          <dt>到手价</dt><dd>${cells[1].textContent}</dd>
+          <dt>重量</dt><dd>${cells[3].textContent}</dd>
+          <dt>屏幕</dt><dd>${cells[5].textContent}</dd>
+          <dt>地图</dt><dd>${cells[8].textContent}</dd>
+          <dt>攀岩</dt><dd>${cells[9].textContent}</dd>
+          <dt>GPS续航</dt><dd>${cells[11].textContent}</dd>
+        </dl>`;
+      mobileContainer.appendChild(card);
+    });
+  }
+  buildMobileCards();
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      rows.forEach(row => {
+        const show = f === 'all' || (row.dataset.tags || '').includes(f);
+        row.classList.toggle('hidden', !show);
+      });
+      document.querySelectorAll('.watch-card-mobile').forEach(card => {
+        const show = f === 'all' || (card.dataset.tags || '').includes(f);
+        card.classList.toggle('hidden', !show);
+      });
+      document.querySelectorAll('#oneliner-cards .card').forEach(card => {
+        const show = f === 'all' || (card.dataset.tags || '').includes(f);
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  document.querySelectorAll('.sort-btns button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.sort;
+      const sorted = [...rows].sort((a, b) => {
+        return Number(a.dataset[key]) - Number(b.dataset[key]);
+      });
+      sorted.forEach(r => tbody.appendChild(r));
+      buildMobileCards();
+      const activeFilter = document.querySelector('.filter-btn.active');
+      if (activeFilter && activeFilter.dataset.filter !== 'all') {
+        activeFilter.click();
+      }
+    });
+  });
+
+  document.querySelectorAll('#spec-table th[data-col]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.col;
+      if (col === 'price' || col === 'weight') {
+        const key = col === 'price' ? 'price' : 'weight';
+        const sorted = [...rows].sort((a, b) => Number(a.dataset[key]) - Number(b.dataset[key]));
+        sorted.forEach(r => tbody.appendChild(r));
+        buildMobileCards();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
