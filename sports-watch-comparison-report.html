@@ -191,9 +191,12 @@
   <span class="badge">数据截止：2026-06-30</span>
   <span class="badge warn">价格含国补/大促参考，实际以电商平台为准</span>
   <p class="open-hint" id="open-hint">
-    <strong>Cursor 远程工作区用户请注意：</strong>在终端运行脚本后，不要直接在本地浏览器打开 <code>127.0.0.1</code>（会报 ERR_CONNECTION_REFUSED）。
-    请用 Cursor 底部 <strong>Ports</strong> 面板找到端口 <code>8765</code> 并点击「Open in Browser」。
-    更简单：打开 <code>sports-watch-report.code-workspace</code> 后直接点击本 HTML 文件预览（无需启动服务器）。
+    <strong>在 Cursor 中点击 HTML 只会显示源码，这是正常行为。</strong>
+    查看渲染页面请任选一种方式：
+    （1）打开 <code>sports-watch-comparison-report.ipynb</code>，运行单元格即可在下方看到完整渲染页面（推荐）；
+    （2）右键本文件 → <strong>Open in Integrated Browser</strong>（集成浏览器预览）；
+    （3）安装 Live Preview 扩展后，打开本文件并点击编辑器右上角「Show Preview」；
+    （4）终端运行 <code>python3 open-sports-watch-report.py</code>，在 Cursor <strong>Ports</strong> 面板打开 8765 端口。
     <button type="button" id="dismiss-hint" aria-label="关闭提示">×</button>
   </p>
 </header>

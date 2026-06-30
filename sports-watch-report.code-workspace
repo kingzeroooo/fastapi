@@ -7,14 +7,27 @@
   ],
   "settings": {
     "workbench.editorAssociations": {
-      "**/sports-watch-comparison-report.html": "simpleBrowser.view"
-    }
+      "*.html": "default",
+      "*.ipynb": "jupyter-notebook"
+    },
+    "livePreview.useIntegratedBrowser": true,
+    "livePreview.openPreviewTarget": "Embedded Preview",
+    "livePreview.autoRefreshPreview": "On All Changes in Editor",
+    "workbench.browser.openLocalhostLinks": true,
+    "notebook.output.textLineLimit": 20000,
+    "notebook.output.scrolling": true
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.live-server",
+      "ms-toolsai.jupyter"
+    ]
   },
   "tasks": {
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "Open Sports Watch Report in Browser",
+        "label": "Open Sports Watch Report Server",
         "type": "shell",
         "command": "python3",
         "args": ["${workspaceFolder}/open-sports-watch-report.py"],
